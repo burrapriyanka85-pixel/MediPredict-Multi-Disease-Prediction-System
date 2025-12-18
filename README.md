@@ -1,61 +1,50 @@
-# 🩺 MediPredict – Intelligent Multi-Disease Prediction System
+# 🩺 MediPredict – Multi-Disease Prediction System
 
-## 📌 Project Overview
-MediPredict is an intelligent machine learning–based healthcare application designed to predict the risk of multiple diseases using patient clinical data. The system integrates multiple trained machine learning models into a single Streamlit web interface, enabling early disease risk assessment in a simple and user-friendly manner.
+## Overview
+MediPredict is a machine learning–based healthcare application that demonstrates an end-to-end ML workflow, from data preprocessing and model training to deployment through a Streamlit web interface.  
+The project focuses on building reliable **baseline machine learning models** for predicting the risk of multiple diseases using structured clinical data.
 
-This project is developed as a **Major Academic Project**, focusing on the practical application of machine learning techniques in the healthcare domain.
-
----
-
-## 🎯 Diseases Covered
-The system currently supports prediction for the following diseases:
-
-- **Diabetes**
-- **Heart Disease**
-- **Liver Disease**
-- **Parkinson’s Disease**
-
-Each disease is handled using a **separate trained machine learning model**, ensuring better accuracy, modularity, and scalability.
+The goal of this project is to showcase practical ML engineering skills, including data handling, model evaluation, modular code design, and user-facing deployment.
 
 ---
 
-## 🧠 Technologies Used
-- **Programming Language:** Python  
+## Supported Disease Predictions
+The application currently supports prediction for the following conditions:
+
+- Diabetes  
+- Heart Disease  
+- Liver Disease  
+- Parkinson’s Disease  
+
+Each disease is handled using an **independently trained model**, allowing modular development and easier future extension.
+
+---
+
+## Tech Stack
+- **Language:** Python  
 - **Machine Learning:** Scikit-learn  
 - **Web Framework:** Streamlit  
 - **Data Processing:** Pandas, NumPy  
-- **Model Persistence:** Pickle / Joblib  
+- **Model Serialization:** Pickle / Joblib  
 
 ---
 
-## 🗂 Project Structure
+## Project Structure
 MediPredict-Multi-Disease-Prediction-System/
 │
-├── data/ # Datasets used for training
-│ ├── diabetes.csv
-│ ├── Heart_Disease_Prediction.csv
-│ ├── indian_liver_patient.csv
-│ └── parkinsons.csv
-│
-├── frontend/ # Streamlit web application
+├── data/ # Clinical datasets
+├── frontend/ # Streamlit application
 │ └── app.py
+├── models/ # Trained ML models
+├── utils/ # Prediction helper logic
 │
-├── models/ # Trained ML models (.pkl files)
-│ ├── diabetes_model.pkl
-│ ├── heart_model.pkl
-│ ├── liver_model.pkl
-│ └── parkinsons_model.pkl
+├── train_diabetes.py
+├── train_heart.py
+├── train_liver.py
+├── train_parkinsons.py
+├── accuracy_plot.py
 │
-├── utils/ # Prediction helper functions
-│ └── prediction.py
-│
-├── train_diabetes.py # Diabetes model training script
-├── train_heart.py # Heart disease model training script
-├── train_liver.py # Liver disease model training script
-├── train_parkinsons.py # Parkinson’s model training script
-├── accuracy_plot.py # Model accuracy visualization
-│
-├── requirements.txt # Project dependencies
+├── requirements.txt
 └── README.md
 
 yaml
@@ -63,49 +52,71 @@ Copy code
 
 ---
 
-## ⚙️ How to Run the Project
+## Model Performance
+The following results were obtained using held-out test data after training and evaluation.  
+These metrics are intended to reflect **baseline model performance**, not optimized or production-tuned results.
 
-### 1️⃣ Clone the repository
+| Disease        | Model Used             | Accuracy |
+|---------------|------------------------|----------|
+| Diabetes      | Logistic Regression    | ~75%     |
+| Heart Disease | Logistic Regression    | ~92%     |
+| Liver Disease | Logistic Regression    | ~76%     |
+| Parkinson’s   | Support Vector Machine | ~82%     |
+
+---
+
+## Model Selection Rationale
+- **Logistic Regression** was chosen for diabetes, heart disease, and liver disease prediction due to its simplicity, interpretability, and strong performance on structured clinical datasets. It serves as a reliable baseline and allows easier understanding of feature influence.
+
+- **Support Vector Machine (SVM)** was selected for Parkinson’s disease prediction because the dataset exhibits complex feature relationships where SVMs perform well in high-dimensional spaces and non-linear decision boundaries.
+
+More complex models such as Random Forest or XGBoost were intentionally excluded in this version to prioritize interpretability, faster experimentation, and clarity of results.
+
+---
+
+## Application Demo
+Screenshots below show the working Streamlit interface.
+
+### Home Interface
+![Home Screen](screenshots/home.png)
+
+### Prediction Output
+![Prediction Result](screenshots/prediction.png)
+
+---
+
+## Running the Application Locally
+
+### 1. Clone the repository
 ```bash
 git clone https://github.com/burrapriyanka85-pixel/MediPredict-Multi-Disease-Prediction-System.git
 cd MediPredict-Multi-Disease-Prediction-System
-2️⃣ Install dependencies
+2. Install dependencies
 bash
 Copy code
 pip install -r requirements.txt
-3️⃣ Run the Streamlit application
+3. Launch the application
 bash
 Copy code
 streamlit run frontend/app.py
-The application will open in your browser at:
+The app will be available at:
 
 arduino
 Copy code
 http://localhost:8501
-📊 Machine Learning Workflow
-Dataset collection and preprocessing
+Future Improvements
+Add model explainability using SHAP or LIME
 
-Feature selection and data cleaning
+Deploy the application using Streamlit Cloud or HuggingFace Spaces
 
-Model training and evaluation
+Introduce ensemble or gradient-boosting models
 
-Saving trained models as .pkl files
+Expose prediction functionality through a REST API
 
-Integrating models with Streamlit UI for real-time prediction
+Disclaimer
+This project is intended for educational and demonstration purposes only and should not be used as a substitute for professional medical advice or diagnosis.
 
-🎓 Academic Relevance
-Demonstrates an end-to-end machine learning pipeline
-
-Applies ML concepts to real-world healthcare problems
-
-Covers data preprocessing, model training, evaluation, and deployment
-
-Suitable for major project submission and viva evaluation
-
-⚠️ Disclaimer
-This application is developed strictly for educational and research purposes only.
-It is not intended for clinical diagnosis or medical decision-making.
-
-👩‍💻 Author
+Author
 Priyanka Burra
 M.Sc Bioinformatics
+Machine Learning & Healthcare Applications
